@@ -26,6 +26,14 @@
   "license": "MIT",
   "homepage": "https://github.com/DomiR/react-native-measure-text#readme",
   "dependencies": {},
+  "files": [
+    "build",
+    "src",
+    "ios",
+    "android/src",
+    "android/build.gradle",
+    "expo-module.config.json"
+  ],
   "devDependencies": {
     "expo-module-scripts": "^2.1.1",
     "expo-modules-core": "^0.11.4"
