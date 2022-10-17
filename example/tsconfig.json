@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "react-native-measure-text": ["../src/ReactNativeMeasureText"],
+      "react-native-measure-text/*": ["../src/*"]
+    }
+  }
+}
