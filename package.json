@@ -1,0 +1,38 @@
+{
+  "name": "@domir/react-native-measure-text",
+  "version": "0.1.0",
+  "description": "Measure text width synchronously using JSI",
+  "main": "build/ReactNativeMeasureText.js",
+  "types": "build/ReactNativeMeasureText.d.ts",
+  "scripts": {
+    "build": "expo-module tsc",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "react-native-measure-text",
+    "ReactNativeMeasureText"
+  ],
+  "repository": "https://github.com/DomiR/react-native-measure-text",
+  "bugs": {
+    "url": "https://github.com/DomiR/react-native-measure-text/issues"
+  },
+  "author": "Dominique <domi.github@gmail.com> (https://github.com/DomiR)",
+  "license": "MIT",
+  "homepage": "https://github.com/DomiR/react-native-measure-text#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "expo-module-scripts": "^2.1.1",
+    "expo-modules-core": "^0.11.4"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}
