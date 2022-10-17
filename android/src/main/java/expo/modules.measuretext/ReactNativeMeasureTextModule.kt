@@ -1,7 +1,5 @@
 package expo.modules.measuretext
 
-import android.R.attr.fontFamily
-import android.R.attr.fontWeight
 import android.graphics.Typeface
 import android.text.TextPaint
 import com.facebook.react.views.text.ReactFontManager
@@ -10,7 +8,6 @@ import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
 import expo.modules.kotlin.records.Field
 import expo.modules.kotlin.records.Record
-
 
 class StyleOptions : Record {
   @Field
@@ -40,10 +37,10 @@ class ReactNativeMeasureTextModule : Module() {
     paint.textSize = usedFontSize;
     val assetManager = appContext.reactContext?.assets;
 
-    if (fontFamily == null || assetManager == null || fontWeight == null)
+    if (fontFamily == null || assetManager == null || fontWeight == null) {
       paint.typeface = Typeface.DEFAULT
     } else {
-      paint.typeface ReactFontManager.getInstance().getTypeface(fontFamily, parseFontWeight(fontWeight), assetManager)
+      paint.typeface = ReactFontManager.getInstance().getTypeface(fontFamily, parseFontWeight(fontWeight), assetManager)
     }
 
     return paint;
