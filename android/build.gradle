@@ -85,5 +85,6 @@ repositories {
 
 dependencies {
   implementation project(':expo-modules-core')
+  implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${getKotlinVersion()}"
 }
