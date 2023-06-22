@@ -1,6 +1,6 @@
 {
   "name": "@domir/react-native-measure-text",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Measure text width synchronously using JSI",
   "main": "build/ReactNativeMeasureText.js",
   "types": "build/ReactNativeMeasureText.d.ts",
