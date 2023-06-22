@@ -20,7 +20,7 @@ export default function App() {
           setWidthResult(
             Math.ceil(
               ReactNativeMeasureText.measureWidth(toMeasure, {
-                // fontSize: 20,
+                fontSize: 20,
                 // fontFamily: 'Helvetica',
                 // fontWeight: 'normal',
                 // maxHeight: 100,
