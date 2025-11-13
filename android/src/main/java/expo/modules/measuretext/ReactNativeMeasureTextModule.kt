@@ -41,7 +41,7 @@ class ReactNativeMeasureTextModule : Module() {
     val paint = TextPaint(TextPaint.ANTI_ALIAS_FLAG);
     val fontScale = appContext.reactContext?.resources?.configuration?.fontScale ?: 1.0f;
     val allowScaledFont = allowFontScaling ?: true;
-    val usedFontSize = (fontSize ?: 0) * fontScale;
+    val usedFontSize = (fontSize ?: 0) * if (allowScaledFont) fontScale else 1.0f;
     paint.textSize = usedFontSize;
     val letterSpacingPixels = if (allowScaledFont)  PixelUtil.toPixelFromSP(letterSpacing ?: 0f) else PixelUtil.toPixelFromDIP(letterSpacing ?: 0f);
     val mFontSize = if (allowScaledFont) Math.ceil(PixelUtil.toPixelFromSP(usedFontSize).toDouble()).toInt() else Math.ceil(PixelUtil.toPixelFromDIP(usedFontSize).toDouble()).toInt();
