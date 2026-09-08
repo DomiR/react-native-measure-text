@@ -1,4 +1,15 @@
 apply plugin: 'com.android.library'
+
+// Expo's Gradle helpers. This has to run after `com.android.library` and outside the
+// `buildscript {}` block (which Gradle evaluates before line 1): since Expo SDK 50 the
+// helper tries to apply `kotlin-android` itself, and applying the Kotlin plugin before
+// AGP breaks AGP 9's built-in Kotlin support.
+def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
+if (expoModulesCorePlugin.exists()) {
+  apply from: expoModulesCorePlugin
+  applyKotlinExpoModulesCorePlugin()
+}
+
 // AGP 9 ships built-in Kotlin support and registers the `kotlin` extension
 // itself. Applying the Kotlin plugin on top of it fails configuration with
 // "Cannot add extension with name 'kotlin'". Only apply it when nothing has
@@ -13,24 +24,21 @@ group = 'expo.modules.measuretext'
 version = '0.1.0'
 
 buildscript {
-  def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
-  if (expoModulesCorePlugin.exists()) {
-    apply from: expoModulesCorePlugin
-    applyKotlinExpoModulesCorePlugin()
-  }
-
   // Simple helper that allows the root project to override versions declared by this library.
   ext.safeExtGet = { prop, fallback ->
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
   }
 
-  // Ensures backward compatibility
+  // Kotlin version. Expo's helper (applied above, but only after this block has already
+  // run) defines `ext.kotlinVersion` as a closure; a `kotlinVersion` Gradle property
+  // (-P or gradle.properties) shows up here as a plain string. Accept both and fall
+  // back to the root project's `ext.kotlinVersion`.
   ext.getKotlinVersion = {
-    if (ext.has("kotlinVersion")) {
-      ext.kotlinVersion()
-    } else {
-      ext.safeExtGet("kotlinVersion", "1.6.10")
+    def kotlinVersion = ext.has("kotlinVersion") ? ext.get("kotlinVersion") : null
+    if (kotlinVersion instanceof Closure) {
+      kotlinVersion = kotlinVersion()
     }
+    kotlinVersion ?: ext.safeExtGet("kotlinVersion", "1.6.10")
   }
 
   repositories {
